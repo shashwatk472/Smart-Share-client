@@ -1,0 +1,17 @@
+.fileBox {
+  height: 43%;
+  width: 30%;
+  background-color: white;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fileBox > img {
+  flex: 0.9;
+  width: 100%;
+}
+
+.fileBox > p {
+  text-align: center;
+}
