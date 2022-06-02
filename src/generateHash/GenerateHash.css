@@ -5,11 +5,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(234, 241, 241);
+
 }
-.hash_headline{
-    color: orange;
-}
+
 .box{
     margin-top: 50px;
     background-color: white;
@@ -22,6 +20,9 @@
     align-items: center;
     
 
+}
+.hash_headline{
+    margin-top: 10px;
 }
 .address{
     display: flex;
