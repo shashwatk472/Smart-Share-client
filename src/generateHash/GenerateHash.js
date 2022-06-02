@@ -1,23 +1,32 @@
 import { useState } from "react";
 import "./GenerateHash.css";
+import CryptoJS from "crypto-js";
 
 const GenerateHash = () => {
   const [publicKey, setPublicKey] = useState("");
   const [cid, setCid] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [hash, setHash] = useState("");
 
   const generate_hash = (e) => {
-    console.log(cid);
+    const cipherString = CryptoJS.AES.encrypt(
+      cid.toString(),
+      publicKey.toString()
+    ).toString();
+    const bytes = CryptoJS.AES.decrypt(cipherString, publicKey.toString());
+    const plaintext = bytes.toString(CryptoJS.enc.Utf8);
+
+    setHash(cipherString);
   };
 
   return (
     <div className="main_container">
       <div className="box">
-          <h1>Generate Hash</h1>
+        <h1 className="hash_headline">Generate Hash</h1>
         <form
           className="address"
           onSubmit={(e) => {
             generate_hash(e);
+            e.preventDefault();
           }}
         >
           <input
@@ -38,9 +47,7 @@ const GenerateHash = () => {
           ></input>
           <input type="submit" value="Generate Hash" className="hash_btn" />
         </form>
-        {success}
-        <div className="hash">ac2fa0b122ac80a15777bbc414bf12510f94fc82410f51f2e33d5991c64085f5
-        </div>
+        <div className="hash">{hash}</div>
       </div>
     </div>
   );
